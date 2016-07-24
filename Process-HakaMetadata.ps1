@@ -97,8 +97,6 @@ foreach ($palvelu in $HakaPalvelut) {
         "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" {
         $claimrules = '@RuleName="Persistent NameID"c:[type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname" ] => add(  store  = "_OpaqueIdStore", types = ("http://laurea/internal/persistentId"), query = "{0};{1};{2}",  param = "ppid",  param = c.Value,  param = c.OriginalIssuer);'+"`n"
         $claimrules += 'c:[Type == "http://laurea/internal/persistentId"] => issue(Type = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", Issuer = c.Issuer, OriginalIssuer = c.OriginalIssuer, Value = c.Value, ValueType = c.ValueType, Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/format"] = "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent");'+"`n"
-        #$claimrules = '@RuleName="eduPersonTargetedID"c:[type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname" ] => add(  store  = "_OpaqueIdStore", types = ("http://laurea/internal/persistentId"), query = "{0};{1};{2}",  param = "ppid",  param = c.Value,  param = c.OriginalIssuer);'+"`n"
-        #$claimrules += 'c:[Type == "http://laurea/internal/persistentId"] => issue(Type = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", Issuer = c.Issuer, OriginalIssuer = c.OriginalIssuer, Value = c.Value, ValueType = c.ValueType, Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/format"] = "urn:oid:1.3.6.1.4.1.5923.1.1.1.10", Properties["http://schemas.xmlsoap.org/ws/2005/05/identity/claimproperties/attributename"] = "urn:oasis:names:tc:SAML:2.0:attrname-format:uri");'
         break;
         }
         default { 
